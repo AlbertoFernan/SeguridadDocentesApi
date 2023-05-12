@@ -20,7 +20,7 @@ string issuer = "docentes.itesrc.net";
 
 string audience = "mauidocentes";
 
-string Secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DocentesKey"));
+var Secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DocentesKey"));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 var app = builder.Build();
