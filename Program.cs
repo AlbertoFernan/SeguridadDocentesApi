@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Security.Cryptography;
 using SeguridadDocentesApi.Data;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -17,7 +20,7 @@ string issuer = "docentes.itesrc.net";
 
 string audience = "mauidocentes";
 
-string Secret = "";
+string Secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DocentesKey"));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 var app = builder.Build();
