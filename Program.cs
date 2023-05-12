@@ -22,7 +22,16 @@ string audience = "mauidocentes";
 
 var Secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DocentesKey"));
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwt => {
+    jwt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = issuer,
+        ValidateAudience = audience,
+        IssuerSigningKey = Secret
+    };
+};
 var app = builder.Build();
 
 app.MapControllers();
