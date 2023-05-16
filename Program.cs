@@ -27,11 +27,13 @@ var Secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("DocentesKey"));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(jwt => {
     jwt.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = issuer,
-        ValidateAudience = audience,
-        IssuerSigningKey = Secret
+        ValidIssuer = issuer,
+        ValidAudience = audience,
+        IssuerSigningKey = Secret,
+        ValidateAudience = true,
+        ValidateIssuer= true,
     };
-};
+});
 var app = builder.Build();
 
 app.MapControllers();

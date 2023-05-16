@@ -25,7 +25,7 @@ namespace SeguridadDocentesApi.Controllers
                 Id=x.Id,
                 Correo=x.Correo??"",//null-coalescene,
                 Nombre=x.Nombre,
-                NumEmpleado=x.NumEmpleado,
+                NumEmpleado=x.NumEmpleado,    
             });;
 
             return Ok(docentes);
